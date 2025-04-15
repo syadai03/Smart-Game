@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Tebak Angka</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game Tebak Angka</h1>
+  <p>Tebak angka dari 1 sampai 100!</p>
+  <input type="number" id="guess" placeholder="Masukkan angka" />
+  <button onclick="checkGuess()">Tebak!</button>
+  <p id="result"></p>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById('guess').value);
+      attempts++;
+
+      if (isNaN(userGuess)) {
+        document.getElementById('result').textContent = 'Masukkan angka yang valid!';
+        return;
+      }
+
+      if (userGuess === randomNumber) {
+        document.getElementById('result').textContent = `Selamat! Kamu menebak dengan benar dalam ${attempts} percobaan.`;
+      } else if (userGuess < randomNumber) {
+        document.getElementById('result').textContent = 'Terlalu kecil! Coba lagi.';
+      } else {
+        document.getElementById('result').textContent = 'Terlalu besar! Coba lagi.';
+      }
+    }
+  </script>
+</body>
+</html>
